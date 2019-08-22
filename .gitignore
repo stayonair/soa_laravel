@@ -10,3 +10,6 @@ composer.phar
 
 ## idea
 .idea/
+
+## logs
+logs/
