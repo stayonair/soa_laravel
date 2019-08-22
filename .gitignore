@@ -1,0 +1,12 @@
+### Composer ###
+composer.phar
+/vendor
+
+### Node ###
+/node_modules
+
+## Laravel ##
+.env
+
+## idea
+.idea/
