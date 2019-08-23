@@ -23,7 +23,10 @@ jobs:
       APP_ENV: testing
       MYSQL_DATABASE: 'forge'
       MYSQL_USER: 'forge'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      MYSQL_PASSWORD: 'secret'
+      DB_DATABASE: 'forge'
+      DB_USERNAME: 'forge'
+      DB_PASSWORD: 'secret'
       TZ: Asia/Tokyo
 
     steps:
