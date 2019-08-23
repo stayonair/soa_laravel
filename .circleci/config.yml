@@ -19,10 +19,12 @@ jobs:
       # - image: redis:2.8.19
 
     environment:
-      TZ: Asia/Tokyo
       APP_KEY: base64:RUg0M4sNlhWVLeU59lUgNfDUGpWxLr3vKicMTZe6U9Y=
       APP_ENV: testing
+      DB_USERNAME: 'forge'
+      DB_DATABASE: 'forge'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      TZ: Asia/Tokyo
 
     steps:
       - checkout
