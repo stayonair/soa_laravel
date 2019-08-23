@@ -21,8 +21,8 @@ jobs:
     environment:
       APP_KEY: base64:RUg0M4sNlhWVLeU59lUgNfDUGpWxLr3vKicMTZe6U9Y=
       APP_ENV: testing
-      DB_USERNAME: 'forge'
-      DB_DATABASE: 'forge'
+      MYSQL_DATABASE: 'forge'
+      MYSQL_USER: 'forge'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
       TZ: Asia/Tokyo
 
