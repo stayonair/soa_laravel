@@ -22,7 +22,7 @@ jobs:
       TZ: Asia/Tokyo
       APP_KEY: base64:RUg0M4sNlhWVLeU59lUgNfDUGpWxLr3vKicMTZe6U9Y=
       APP_ENV: testing
-      DB_PASSWORD: secret
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
     steps:
       - checkout
