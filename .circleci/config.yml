@@ -21,11 +21,11 @@ jobs:
     environment:
       APP_KEY: base64:RUg0M4sNlhWVLeU59lUgNfDUGpWxLr3vKicMTZe6U9Y=
       APP_ENV: testing
-      MYSQL_DATABASE: 'homestead'
-      MYSQL_USER: 'homestead'
+      MYSQL_DATABASE: 'root'
+      MYSQL_USER: 'root'
       MYSQL_PASSWORD: 'secret'
-      DB_DATABASE: 'homestead'
-      DB_USERNAME: 'homestead'
+      DB_DATABASE: 'root'
+      DB_USERNAME: 'root'
       DB_PASSWORD: 'secret'
       TZ: Asia/Tokyo
       MYSQL_ALLOW_EMPTY_PASSWORD: true
