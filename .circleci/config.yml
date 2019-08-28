@@ -52,8 +52,8 @@ jobs:
             - src/vendor
 
       # prepare the database
-      - run: touch src/storage/testing.mysql
-      - run: cd src && php artisan migrate --env=testing --database=mysql --force
+      - run: touch src/storage/testing.sqlite
+      - run: cd src && php artisan migrate --env=sqlite_testing --force
 
       # run tests with phpunit or codecept
       - run: src/vendor/bin/phpunit
