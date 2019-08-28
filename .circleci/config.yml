@@ -28,6 +28,7 @@ jobs:
       DB_USERNAME: 'homestead'
       DB_PASSWORD: 'secret'
       TZ: Asia/Tokyo
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     steps:
       - checkout
@@ -51,7 +52,7 @@ jobs:
             - src/vendor
 
       # prepare the database
-      - run: cd src && php artisan migrate --env=testing --force
+      - run: cd src && php artisan migrate --env=testing --database=soa_laravel_testing --force
 
       # run tests with phpunit or codecept
       - run: src/vendor/bin/phpunit
