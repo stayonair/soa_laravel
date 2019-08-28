@@ -52,7 +52,8 @@ jobs:
             - src/vendor
 
       # prepare the database
-      - run: cd src && php artisan migrate --env=testing --database=soa_laravel_app_1 --force
+      - run: touch storage/testing.mysql
+      - run: cd src && php artisan migrate --env=testing --database=mysql_testing --force
 
       # run tests with phpunit or codecept
       - run: src/vendor/bin/phpunit
