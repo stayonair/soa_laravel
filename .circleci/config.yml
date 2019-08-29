@@ -8,6 +8,12 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.3-cli
+        environment:
+          - APP_ENV: testing
+          - APP_KEY: base64:RUg0M4sNlhWVLeU59lUgNfDUGpWxLr3vKicMTZe6U9Y=
+          - DB_DATABASE: homestead
+          - DB_USERNAME: homestead
+          - DB_PASSWORD: secret
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -15,20 +21,12 @@ jobs:
       # Using the RAM variation mitigates I/O contention
       # for database intensive operations.
       - image: circleci/mysql:5.7-ram
-      #
-      # - image: redis:2.8.19
-
-    environment:
-      APP_KEY: base64:RUg0M4sNlhWVLeU59lUgNfDUGpWxLr3vKicMTZe6U9Y=
-      APP_ENV: testing
-      MYSQL_DATABASE: 'homestead'
-      MYSQL_USER: 'homestead'
-      MYSQL_PASSWORD: 'secret'
-      MYSQL_ROOT_PASSWORD: 'secret'
-      DB_DATABASE: 'homestead'
-      DB_USERNAME: 'homestead'
-      DB_PASSWORD: 'secret'
-      TZ: Asia/Tokyo
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: homestead
+          - MYSQL_USER: homestead
+          - MYSQL_PASSWORD: secret
+          - TZ: Asia/Tokyo
 
     steps:
       - checkout
@@ -50,6 +48,9 @@ jobs:
           key: v1-dependencies-{{ checksum "src/composer.json" }}
           paths:
             - src/vendor
+
+      # wait for docker start
+      - run: dockerize -wait tcp://localhost:3306 -timeout 1m
 
       # prepare the database
       - run: cd src && php artisan migrate --env=testing --force
