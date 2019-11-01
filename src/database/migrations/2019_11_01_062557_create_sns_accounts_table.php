@@ -20,6 +20,7 @@ class CreateSnsAccountsTable extends Migration
             $table->string('account_id');
             $table->timestamps();
 
+            $table->unique(['user_id', 'sns_type', 'account_id']);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

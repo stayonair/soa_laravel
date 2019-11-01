@@ -20,6 +20,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('introduction', 255);
             $table->timestamps();
 
+            $table->unique('user_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
