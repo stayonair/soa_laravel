@@ -2,8 +2,9 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -36,4 +37,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @return HasOne
+     */
+    public function userProfile(): HasOne
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function snsAccounts(): HasMany
+    {
+        return $this->hasMany(SnsAccount::class);
+    }
 }
