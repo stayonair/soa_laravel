@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         /** @var App\User */
-        factory(User::class, 50)->create()->each(function ($user) {
+        factory(User::class, 10)->create()->each(function ($user) {
             $user->userProfile()->save(factory(UserProfile::class)->make());
             $user->snsAccounts()->save(factory(SnsAccount::class)->make());
         });
