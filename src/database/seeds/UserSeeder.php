@@ -2,7 +2,9 @@
 
 use App\User;
 use App\UserProfile;
+use App\Post;
 use App\SnsAccount;
+use App\Tag;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -19,5 +21,20 @@ class UserSeeder extends Seeder
             $user->userProfile()->save(factory(UserProfile::class)->make());
             $user->snsAccounts()->save(factory(SnsAccount::class)->make());
         });
+
+        $users = User::all();
+
+        factory(Post::class, 10)
+            ->create()
+            ->each(function ($post) use ($users) {
+            $post->tags()->attach(
+                $users->random(rand(1, 3))->pluck('id')->toArray()
+            );
+        });
+
+//        factory(Tag::class)->make([
+//            'post_id' => 1,
+//        ])->save();
+
     }
 }

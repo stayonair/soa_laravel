@@ -53,4 +53,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(SnsAccount::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 }
