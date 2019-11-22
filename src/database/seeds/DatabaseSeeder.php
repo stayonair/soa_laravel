@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(UserSeeder::class);
+        if (env('APP_ENV') === 'develop') {
+            $this->call(UserSeeder::class);
+        }
     }
 }
