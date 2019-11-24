@@ -11,13 +11,18 @@ class Post extends Model
     protected $guarded = ['id'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
     }
 
+    /**
+     * @param Builder $builder
+     * @param User $user
+     * @return Builder
+     */
     public function scopeByUser(Builder $builder, User $user)
     {
         return $builder->where('user_id', $user->id);
