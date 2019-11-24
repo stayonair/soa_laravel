@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // 開発環境のみ発火する。
-        if (App::environment('develop')) {
+        if (App::environment('local')) {
             $this->call(UserSeeder::class);
+            $this->call(PostSeeder::class);
         };
     }
 }

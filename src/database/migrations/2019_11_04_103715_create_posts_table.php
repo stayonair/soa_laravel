@@ -22,7 +22,6 @@ class CreatePostsTable extends Migration
             $table->string('thumbnail_url');
             $table->timestamps();
 
-            $table->unique(['user_id']);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users');

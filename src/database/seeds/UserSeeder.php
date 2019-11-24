@@ -21,15 +21,5 @@ class UserSeeder extends Seeder
             $user->userProfile()->save(factory(UserProfile::class)->make());
             $user->snsAccounts()->save(factory(SnsAccount::class)->make());
         });
-
-        $users = User::all();
-
-        factory(Post::class, 10)
-            ->create()
-            ->each(function ($post) use ($users) {
-            $post->tags()->attach(
-                $users->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        });
     }
 }
