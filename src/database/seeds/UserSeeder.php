@@ -2,9 +2,7 @@
 
 use App\User;
 use App\UserProfile;
-use App\Post;
 use App\SnsAccount;
-use App\Tag;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
