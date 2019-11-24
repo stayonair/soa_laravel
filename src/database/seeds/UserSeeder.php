@@ -31,10 +31,5 @@ class UserSeeder extends Seeder
                 $users->random(rand(1, 3))->pluck('id')->toArray()
             );
         });
-
-//        factory(Tag::class)->make([
-//            'post_id' => 1,
-//        ])->save();
-
     }
 }
