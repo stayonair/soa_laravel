@@ -62,7 +62,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user): JsonResponse
     {
-        return response()->json(['status' => 'success']);
+        $user->update($request->all());
+
+        return response()->json($user, Response::HTTP_OK);
     }
 
     /**

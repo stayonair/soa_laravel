@@ -88,4 +88,29 @@ class UserControllerTest extends TestCase
         $res->assertStatus(Response::HTTP_OK);
         $res->assertJson($user->toArray());
     }
+
+    /**
+     * @covers \App\Http\Controllers\UserController::update
+     *
+     * @return void
+     */
+    public function testUpdate()
+    {
+        /** @var \App\User $user */
+        $user = factory(User::class)->create();
+
+        $password = $this->faker->word;
+        $params = [
+            'name'     => $this->faker->name,
+            'email'    => $this->faker->unique()->email,
+            'password' => $password,
+        ];
+
+        $res = $this->putJson(
+            route('user_update', ['user' => $user->id]),
+            $params
+        );
+
+        $res->assertStatus(Response::HTTP_OK);
+    }
 }
