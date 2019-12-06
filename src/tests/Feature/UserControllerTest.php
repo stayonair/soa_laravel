@@ -35,7 +35,7 @@ class UserControllerTest extends TestCase
      */
     public function testIndex()
     {
-        $res = $this->getJson(route('user_index'));
+        $res = $this->getJson(route('users.index'));
 
         $res->assertStatus(200);
     }
@@ -55,7 +55,7 @@ class UserControllerTest extends TestCase
         ];
 
         $res = $this->postJson(
-            route('user_store'),
+            route('users.store'),
             $params
         );
 
@@ -63,7 +63,7 @@ class UserControllerTest extends TestCase
         $this->assertDatabaseHas('users', Arr::except($params, ['password']));
 
         $resLogin = $this->postJson(
-            route('auth_login'),
+            route('auth.login'),
             [
                 'email'    => $params['email'],
                 'password' => $params['password'],
@@ -82,7 +82,7 @@ class UserControllerTest extends TestCase
         $user = factory(User::class)->create();
 
         $res = $this->getJson(
-            route('user_show', $user->id)
+            route('users.show', $user->id)
         );
 
         $res->assertStatus(Response::HTTP_OK);
@@ -107,7 +107,7 @@ class UserControllerTest extends TestCase
         ];
 
         $res = $this->putJson(
-            route('user_update', ['user' => $user->id]),
+            route('users.update', ['user' => $user->id]),
             $params
         );
 
