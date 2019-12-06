@@ -11,8 +11,10 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace' => 'Auth'], function () {
-    Route::group(['middle' => 'guest:api'], function () {
+    Route::group(['middleware' => 'guest:api'], function () {
         Route::post('/login', 'AuthController@login');
     });
     Route::group(['middleware' => 'auth:api'], function () {
@@ -20,3 +22,9 @@ Route::group(['namespace' => 'Auth'], function () {
     });
 });
 
+Route::group(['prefix' => 'users'], function () {
+    Route::post('/new', 'UserController@store');
+    Route::get('/', 'UserController@index');
+    Route::get('/{user}', 'UserController@show');
+    Route::put('/{user}/update', 'UserController@update');
+});
