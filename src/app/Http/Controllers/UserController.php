@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\UserProfile;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -29,15 +31,14 @@ class UserController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        /** @var App\User $user */
+        /** @var User $user */
         $user = new User();
-        $params = [
+
+        $user->signUp([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-        ];
-
-        $user->fill($params)->save();
+        ]);
 
         return response()->json($user, Response::HTTP_CREATED);
     }

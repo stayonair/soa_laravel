@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * Class User
+ * @package App
+ * @property-read UserProfile $userProfile
+ */
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -72,5 +78,14 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function signUp(array $attribute)
+    {
+        DB::transaction(function () use ($attribute) {
+            $this->fill($attribute);
+            $this->save();
+            $this->userProfile();
+        });
     }
 }
