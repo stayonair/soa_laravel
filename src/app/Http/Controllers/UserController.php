@@ -33,7 +33,7 @@ class UserController extends Controller
         $params = [
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => Hash::make($request['name']),
+            'password' => Hash::make($request['password']),
         ];
 
         $user->fill($params)->save();
