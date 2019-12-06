@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Auth'], function () {
     Route::group(['middleware' => 'guest:api'], function () {
-        Route::post('/login', 'AuthController@login')->name('auth_login');
+        Route::post('/login', 'AuthController@login')->name('auth.login');
     });
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/me', 'AuthController@me');
@@ -23,8 +23,9 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::group(['prefix' => 'users'], function () {
-    Route::post('/new', 'UserController@store')->name('user_store');
-    Route::get('/', 'UserController@index')->name('user_index');
-    Route::get('/{user}', 'UserController@show')->name('user_show');
-    Route::put('/{user}/update', 'UserController@update')->name('user_update');
+    Route::post('/new', 'UserController@store')->name('users.store');
+    Route::get('/', 'UserController@index')->name('users.index');
+    Route::get('/{user}', 'UserController@show')->name('users.show');
+    Route::put('/{user}/update', 'UserController@update')->name('users.update');
+    Route::patch('/{user}/profile/update', 'UserProfileController@update')->name('user_profile.update');
 });
