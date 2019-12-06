@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
@@ -38,7 +39,7 @@ class UserController extends Controller
 
         $user->fill($params)->save();
 
-        return response()->json(['status' => 'success']);
+        return response()->json($user, Response::HTTP_CREATED);
     }
 
     /**
