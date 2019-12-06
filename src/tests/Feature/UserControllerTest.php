@@ -5,12 +5,13 @@ namespace Tests\Feature;
 use Faker\Generator as Faker;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Response;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @var \Faker\Generator */
     private $faker;
 
