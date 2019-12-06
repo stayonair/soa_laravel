@@ -25,6 +25,6 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['prefix' => 'users'], function () {
     Route::post('/new', 'UserController@store')->name('user_store');
     Route::get('/', 'UserController@index')->name('user_index');
-    Route::get('/{user}', 'UserController@show');
+    Route::get('/{user}', 'UserController@show')->name('user_show');
     Route::put('/{user}/update', 'UserController@update');
 });

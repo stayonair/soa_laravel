@@ -50,7 +50,6 @@ class UserController extends Controller
      */
     public function show(User $user): JsonResponse
     {
-        $user = User::find($user);
         return response()->json($user);
     }
 

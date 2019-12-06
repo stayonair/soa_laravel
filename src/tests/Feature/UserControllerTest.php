@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Response;
@@ -39,6 +40,11 @@ class UserControllerTest extends TestCase
         $res->assertStatus(200);
     }
 
+    /**
+     * @covers \App\Http\Controllers\UserController::store
+     *
+     * @return void
+     */
     public function testStore()
     {
         $password = $this->faker->word;
@@ -64,5 +70,22 @@ class UserControllerTest extends TestCase
             ]
         );
         $resLogin->assertStatus(Response::HTTP_OK);
+    }
+
+    /**
+     * @covers \App\Http\Controllers\UserController::show
+     *
+     * @return void
+     */
+    public function testShow()
+    {
+        $user = factory(User::class)->create();
+
+        $res = $this->getJson(
+            route('user_show', $user->id)
+        );
+
+        $res->assertStatus(Response::HTTP_OK);
+        $res->assertJson($user->toArray());
     }
 }
