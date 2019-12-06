@@ -27,4 +27,5 @@ Route::group(['prefix' => 'users'], function () {
     Route::get('/', 'UserController@index')->name('users.index');
     Route::get('/{user}', 'UserController@show')->name('users.show');
     Route::put('/{user}/update', 'UserController@update')->name('users.update');
+    Route::patch('/{user}/profile/update', 'UserProfileController@update')->name('user_profile.update');
 });

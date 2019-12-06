@@ -13,7 +13,7 @@ class UpdateUserProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateUserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string|max:20',
+            'introduction' => 'string|max:250',
         ];
     }
 }
